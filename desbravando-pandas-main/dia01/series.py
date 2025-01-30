@@ -67,6 +67,8 @@ series_idades.index = [40, 10, 30, 20]
 #Forma explícita da posição da série
 series_idades.iloc[0:2]
 # %%
+series_idades.iloc[1]
+# %%
 
 #Acessando por índice
 series_idades.loc[40]
