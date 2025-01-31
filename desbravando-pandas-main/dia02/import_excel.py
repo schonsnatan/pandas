@@ -1,27 +1,34 @@
 # %%
 import pandas as pd
 
+# %%
+
 df = pd.read_excel("../data/transactions.xlsx")
 df
-
 # %%
+
 df.shape
-
 # %%
+
 df.head()
-
 # %%
+
 df.tail()
 
 # %%
 
 colunas = ['UUID',
-           "Points",
+           'Points',
            'IdCustomer',
-           "DtTransaction"]
+           'DtTransaction']
+
+df[colunas]
+# %%
 
 df = df[colunas]
-df
-
 # %%
+df
+# %%
+
 df.info(memory_usage='deep')
+# %%

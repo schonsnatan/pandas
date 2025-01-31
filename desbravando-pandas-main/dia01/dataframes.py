@@ -72,3 +72,4 @@ df.head()
 # 5 últimas linhas por padrão
 df.tail(2)
 # %%
+
