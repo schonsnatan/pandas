@@ -7,12 +7,29 @@ data = {
     "updated_at":[1,2,3,1,2,3]
 }
 
+df = pd.DataFrame(data)
+df
+# %%
+
+# só remove se for tudo igual
+df.drop_duplicates()
+# %%
+
+# antes de remover duplicatas, ordenamos para encontrar o mais atualizado
+df = df.sort_values(by='updated_at',ascending=False)
+df
 
 # %%
-df = pd.DataFrame(data)
 
-df = (df.sort_values(by="updated_at", ascending=False)
-        .drop_duplicates(subset=["Nome", "Idade"], keep='first'))
+# subset remove baseado nos parametros
+df.drop_duplicates(subset=['Nome','Idade'],keep='first')
+
+# %%
+
+# encadeando comandos
+
+df = (df.sort_values(by='updated_at',ascending=False)
+    .drop_duplicates(subset=['Nome','Idade'],keep='first'))
 
 df
 # %%
