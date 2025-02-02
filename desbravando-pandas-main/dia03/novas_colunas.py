@@ -65,7 +65,7 @@ df
 df['UUID'].apply(lambda x: x[-3:])
 # %%
 
-# RVM Marketing
+# RFV Marketing
 data = {
     "nome":['Teo','Nah','Maria','Lara'],
     'recencia':[1,30,10,45],
@@ -102,3 +102,11 @@ def rfv(row):
         nota += 0
 
      return nota
+
+# aqui o rfv recebe a linha inteira, ou seja uma SÉRIE. Axis
+# é o eixo e se refere a linha
+df_crm['RFV'] = df_crm.apply(rfv, axis=1)
+# %%
+
+df_crm
+# %%

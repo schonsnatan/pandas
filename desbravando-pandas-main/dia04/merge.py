@@ -23,17 +23,31 @@ df_transacao = pd.DataFrame(data_transacoes)
 df_transacao
 
 # %%
+'''
+SELECT 
+FROM df_transacao
+LEFT JOIN df_user
+ON df_transacao.id_user = df_user.id
+'''
 
-df_transacao.merge(df_user,
-                   how='left',
-                   left_on=['id_user'],
-                   right_on=['id'],                   
+df_transacao.merge(df_user, 
+                   how='left', 
+                   left_on='id_user',
+                   right_on='id'
                    )
-
 # %%
 
-df_transacao.merge(df_user,
-                   how='inner',
-                   left_on=['id_user'],
-                   right_on=['id'],                   
+df_user.merge(df_transacao, 
+                   how='right', 
+                   left_on='id',
+                   right_on='id_user'
                    )
+# %%
+# só pegar as colunas que quero
+df_transacao.merge(df_user, 
+                    how='inner', 
+                    left_on='id_user', 
+                    right_on='id'
+                    ).drop(columns=['id'])
+
+# %%
