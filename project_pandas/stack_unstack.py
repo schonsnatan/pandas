@@ -2,27 +2,32 @@
 
 import pandas as pd
 
-df = pd.read_csv("../data/bia_consolidado.csv", sep=";")
+df = pd.read_csv(r"path", sep=";")
 df
 
 # %%
 
-df = df.set_index(["cod", "nome", "período"])
-
-# %%
-df_stack = df.stack().reset_index().rename(columns={"level_3":"Tipo Homicidio",
-                                                    0:"Qtde"})
-
-
-#%%
-df_unstack = (df_stack.set_index(['cod','nome','período', 'Tipo Homicidio'])
-                      .unstack()
-                      .reset_index())
+# fixando as colunas
+df = df.set_index(['cod','nome','período'])
+df
 
 # %%
 
-homicidios = df_unstack['Qtde'].columns.tolist()
-indentificadores = df_unstack.columns.droplevel(1).tolist()[:3]
+# stack (pivotando a tabela)
+df_stack = df.stack().reset_index().rename(columns={'level_3':'Tipo Homicidio',
+                                         0:'quantidade'})
 
-df_unstack.columns = indentificadores + homicidios
+# %%
+
+# transpondo o stack (primeiro setar o index antes de fazer isso)
+df_unstack = (df_stack
+            .set_index(['cod','nome','período','Tipo Homicidio'])
+            .unstack()
+            .reset_index())
+
+homicidios = df_unstack['quantidade'].columns.tolist()
+homicidios
+
+df_unstack.columns = ['cod','nome','período'] + homicidios
 df_unstack
+# %%
