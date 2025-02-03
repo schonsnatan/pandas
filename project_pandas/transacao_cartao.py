@@ -58,7 +58,11 @@ df_fatura_mes
 # %%
 
 # posso pivotar a coluna dtFatura  
-df_fatura_mes = df_fatura_mes.pivot_table(columns='dtFatura', index='idCliente', values='ValorParcela')
-df_fatura_mes = df_fatura_mes.fillna(0)
+df_fatura_mes = (df_fatura_mes.pivot_table(columns='dtFatura', 
+                                           index='idCliente', 
+                                           values='ValorParcela')
+                                            .fillna(0)
+                                            .reset_index()
+                                            )
 df_fatura_mes
 # %%
