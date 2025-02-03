@@ -51,3 +51,9 @@ df_transacao.merge(df_user,
                     ).drop(columns=['id'])
 
 # %%
+
+df_transacao.merge(df_user,
+                   how='left',
+                   left_on='id_user',
+                   right_on='id').drop(columns='id')
+# %%

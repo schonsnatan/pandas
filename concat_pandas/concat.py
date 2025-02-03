@@ -24,17 +24,18 @@ df_02
 
 # %%
 
-pd.concat([df_01, df_02]).reset_index(drop=True)
-
+pd.concat([df_01,df_02]).reset_index(drop=True)
 # %%
 
 data_03 = {
     "sobrenome":["Calvo", "Silva", "Costa", "Souza"],
-    "renda": [3100, 3100, 3200, 3200]
+    "renda": [3100,3100,3200,3200]
 }
-df_03 = pd.DataFrame(data_03).sort_values(['renda','sobrenome'], ascending=[False, True])
 
-df_03
+df_03 = pd.DataFrame(data_03).sort_values(['renda','sobrenome'], ascending=[False,True])
+df_03 
 # %%
 
-pd.concat([df_01, df_03], axis=1)
+# posso concatenar colunas (pega por indice independente do sort)
+pd.concat([df_01,df_03], axis=1)
+# %%
